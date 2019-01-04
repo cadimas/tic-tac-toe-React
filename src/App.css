@@ -1,32 +1,70 @@
-.App {
+.container {
+  position: relative;
+  top: 25vh;
+  width: 60%;
+  margin: 0 auto;
+}
+
+#title {
+  position: relative;
+
+  font-size: 90px;
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+#arrowLeft {
+  display: inline-block;
+  height: 60px;
+  width: 60px;
+  background-image: url("/images/arrowLeft.png");
+  background-position: center;
+  background-size: 80%;
+  background-repeat: no-repeat;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+#redo {
+  display: inline-block;
+  height: 60px;
+  width: 60px;
+  background-image: url("/images/loop.png");
+  background-position: center;
+  background-size: 80%;
+  background-repeat: no-repeat;
 }
 
-.App-link {
-  color: #61dafb;
+.board {
+  position: relative;
+  width: 300px;
+  height: 300px;
+
+  margin: 0 auto;
+  display: grid;
+
+  grid-template-columns: auto auto auto;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.square {
+  border: 2.5px solid rgb(130, 151, 190);
+
+  background-position: center;
+  background-size: 80%;
+  background-repeat: no-repeat;
+
+  border-radius: 15%;
+  margin: 2px;
+  padding: 5% 0; /*centers*/
+}
+
+/* cross circle empty images to fill board */
+
+.x {
+  background-image: url("/images/cross.png");
+}
+
+.o {
+  background-image: url("/images/circle.png");
+}
+
+.empty {
+  background-image: none;
 }
