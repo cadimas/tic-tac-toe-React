@@ -7,9 +7,29 @@
 
 #title {
   position: relative;
-
   font-size: 90px;
   text-align: center;
+}
+
+/* CONTROLS */
+
+#controls {
+  text-align: center;
+}
+
+#start {
+  display: inline-block;
+  font-size: 45px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  cursor: pointer;
+}
+
+.playerChoice {
+  display: inline-block;
+  font-size: 45px;
+  padding: 25px;
+  cursor: pointer;
 }
 
 #arrowLeft {
@@ -32,15 +52,17 @@
   background-repeat: no-repeat;
 }
 
-.board {
+/*End of Controls*/
+
+#board {
   position: relative;
   width: 300px;
   height: 300px;
-
   margin: 0 auto;
   display: grid;
-
   grid-template-columns: auto auto auto;
+  -webkit-transition: opacity 1s;
+  transition: opacity 1s;
 }
 
 .square {
@@ -67,4 +89,26 @@
 
 .empty {
   background-image: none;
+}
+
+/*GAme won lost draw*/
+
+/*
+div {
+  -webkit-transition: opacity 1s; 
+  transition: opacity 1s;
+}
+
+*/
+
+.finished {
+  opacity: 0.3;
+}
+
+.hide {
+  display: none !important;
+}
+
+.show {
+  display: show;
 }
