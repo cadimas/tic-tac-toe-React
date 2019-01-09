@@ -101,9 +101,14 @@ div {
 
 */
 
-.finished {
-  opacity: 0.3;
+.whoWon{
+  font-size:35px;
 }
+span.whoWon{
+  display: inline-block;
+  padding:20px;
+}
+
 
 .hide {
   display: none !important;
@@ -111,4 +116,9 @@ div {
 
 .show {
   display: show;
+}
+
+.opaque{
+  opacity:0.3;
+  z-index:-1;
 }

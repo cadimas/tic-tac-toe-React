@@ -9,9 +9,15 @@ class Controls extends Component {
       this.props.gameState === "playerPhase"
         ? "playerChoice show"
         : "playerChoice hide";
+    let whoWonClass = this.props.gameState === "finished" ? "show whoWon" : "hide whoWon";
+
 
     return (
+      
       <div id="controls">
+      <div className={whoWonClass}>{this.props.whoWon}!Play again?</div>
+      <span className={whoWonClass}>Yes</span>
+      <span className={whoWonClass}>No</span>
         <span
           id="start"
           className={startButtonClass}

@@ -19,7 +19,8 @@ class App extends Component {
     ],
     players: "sth",
     turn: "x",
-    gameState: "startPhase"
+    gameState: "startPhase",
+    whoWon:""
   };
 
   //receives state as an argument("x" or "o") and returns an inverted "o" or "x"
@@ -78,18 +79,25 @@ class App extends Component {
   };
 
   handleGameEnd = player => {
-    console.log("player " + player + " won");
+    let whoWon = (player === "x" || player ==="o") ? "player " + player + " won": "It's a draw!";
     let cloneState = this.state;
+    cloneState.whoWon = whoWon;
     cloneState.gameState = "finished";
     this.setState({ cloneState });
   };
 
   render() {
-    let boardCssClass = this.state.gameState;
+    let boardCssClass = "";
+    switch(this.state.gameState){
+      case "finished":  boardCssClass = "opaque"; break;
+      case "onGoing": boardCssClass = "show";break;
+      default: boardCssClass ="hide";
+    } 
     return (
       <div className="container">
         <div id="title">Tic Tac Toe</div>
         <Controls
+          whoWon={this.state.whoWon}
           onRedoPress={this.handleReset}
           onArrowLeftPress={this.handleGoback}
           onStartPress={this.handleBeggining}
