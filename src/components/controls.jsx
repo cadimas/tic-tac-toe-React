@@ -48,7 +48,7 @@ class Controls extends Component {
         </span>
         <span
           className={buttonsClass}
-          onClick={() => this.props.onArrowLeftPress()}
+          onClick={() => this.props.onRedoPress("startPhase")}
           id="arrowLeft"
         />
         <span

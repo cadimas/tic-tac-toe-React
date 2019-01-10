@@ -7,15 +7,15 @@ import * as TicTac from "./lib/ticTac.js";
 class App extends Component {
   state = {
     board: [
-      { id: 0, value: "empty" },
-      { id: 1, value: "empty" },
-      { id: 2, value: "empty" },
-      { id: 3, value: "empty" },
-      { id: 4, value: "empty" },
-      { id: 5, value: "empty" },
-      { id: 6, value: "empty" },
-      { id: 7, value: "empty" },
-      { id: 8, value: "empty" }
+      { id: 0, value: "o" },
+      { id: 1, value: "o" },
+      { id: 2, value: "" },
+      { id: 3, value: "x" },
+      { id: 4, value: "x" },
+      { id: 5, value: "" },
+      { id: 6, value: "" },
+      { id: 7, value: "" },
+      { id: 8, value: "" }
     ],
     players: "sth",
     turn: "x",
@@ -29,15 +29,24 @@ class App extends Component {
   };
 
   handleClick = state => {
-    if (state.value === "empty") {
+    //if square clicked is empty
+    if (state.value === "") {
       //because we can't manipulate directly app state
       let cloneState = this.state;
 
       //updates x or o in state clone board
       cloneState.board[state.id].value = cloneState.turn;
 
-      //updates turn for next player
-      cloneState.turn = this.invertState(cloneState.turn);
+      if (
+        this.state.players === "1player" &&
+        TicTac.makeAvailSpots(cloneState.board).length !== 0
+      ) {
+        let computerMove = TicTac.minimax(cloneState.board, "o").index;
+        cloneState.board[computerMove].value = "o";
+      } else {
+        //if on 2 player mode inverts symbol for next player
+        cloneState.turn = this.invertState(cloneState.turn);
+      }
 
       //updates state
       this.setState({ cloneState }, () => {
@@ -46,6 +55,10 @@ class App extends Component {
           TicTac.checkWin(this.state.board, this.invertState(this.state.turn))
         ) {
           this.handleGameEnd(this.invertState(this.state.turn));
+        }
+        //if there are no available squares meaning it's a draw
+        else if (TicTac.makeAvailSpots(cloneState.board).length === 0) {
+          this.handleGameEnd("draw");
         }
       });
     }
@@ -69,15 +82,11 @@ class App extends Component {
     cloneState.gameState = phase;
     cloneState.turn = "x";
     cloneState.board.map(el => {
-      el.value = "empty";
+      el.value = "";
       return el;
     });
 
     this.setState({ cloneState });
-  };
-
-  handleGoBack = () => {
-    console.log("tryed to go back");
   };
 
   handleGameEnd = player => {
@@ -103,13 +112,13 @@ class App extends Component {
       default:
         boardCssClass = "hide";
     }
+
     return (
       <div className="container">
         <div id="title">Tic Tac Toe</div>
         <Controls
           whoWon={this.state.whoWon}
           onRedoPress={this.handleReset}
-          onArrowLeftPress={this.handleGoback}
           onStartPress={this.handleBeggining}
           onPlayerChoice={this.handlePlayerChoice}
           gameState={this.state.gameState}
