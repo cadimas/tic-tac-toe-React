@@ -1,3 +1,5 @@
+This was my first attempt at a React Project, a very simple Tic-Tac-Toe which on the 1 player option uses the minimax algorithm to decide the best possible move. If you which to improve the code follow the intructions below and hit me up with a pull request.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
