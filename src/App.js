@@ -20,7 +20,7 @@ class App extends Component {
     players: "sth",
     turn: "x",
     gameState: "startPhase",
-    whoWon:""
+    whoWon: ""
   };
 
   //receives state as an argument("x" or "o") and returns an inverted "o" or "x"
@@ -64,13 +64,15 @@ class App extends Component {
     this.setState({ cloneState });
   };
 
-  handleReset = () => {
+  handleReset = phase => {
     let cloneState = this.state;
+    cloneState.gameState = phase;
+    cloneState.turn = "x";
     cloneState.board.map(el => {
       el.value = "empty";
       return el;
     });
-    cloneState.turn = "x";
+
     this.setState({ cloneState });
   };
 
@@ -79,7 +81,10 @@ class App extends Component {
   };
 
   handleGameEnd = player => {
-    let whoWon = (player === "x" || player ==="o") ? "player " + player + " won": "It's a draw!";
+    let whoWon =
+      player === "x" || player === "o"
+        ? "player " + player + " won"
+        : "It's a draw!";
     let cloneState = this.state;
     cloneState.whoWon = whoWon;
     cloneState.gameState = "finished";
@@ -88,11 +93,16 @@ class App extends Component {
 
   render() {
     let boardCssClass = "";
-    switch(this.state.gameState){
-      case "finished":  boardCssClass = "opaque"; break;
-      case "onGoing": boardCssClass = "show";break;
-      default: boardCssClass ="hide";
-    } 
+    switch (this.state.gameState) {
+      case "finished":
+        boardCssClass = "opaque";
+        break;
+      case "onGoing":
+        boardCssClass = "show";
+        break;
+      default:
+        boardCssClass = "hide";
+    }
     return (
       <div className="container">
         <div id="title">Tic Tac Toe</div>
