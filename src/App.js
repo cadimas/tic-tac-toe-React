@@ -17,7 +17,7 @@ class App extends Component {
       { id: 7, value: "" },
       { id: 8, value: "" }
     ],
-    players: "sth",
+    players: "",
     turn: "x",
     gameState: "startPhase",
     whoWon: ""
@@ -30,13 +30,14 @@ class App extends Component {
 
   handleClick = state => {
     //if square clicked is empty
-    if (state.value === "") {
+    if (state.value === "" && this.state.gameState === "onGoing") {
       //because we can't manipulate directly app state
       let cloneState = this.state;
 
       //updates x or o in state clone board
       cloneState.board[state.id].value = cloneState.turn;
 
+      //if on 1 player mode and there is available squares
       if (
         this.state.players === "1player" &&
         TicTac.makeAvailSpots(cloneState.board).length !== 0
@@ -50,7 +51,7 @@ class App extends Component {
 
       //updates state
       this.setState({ cloneState }, () => {
-        //if some player won
+        //if any player won
         if (
           TicTac.checkWin(this.state.board, this.invertState(this.state.turn))
         ) {
@@ -64,12 +65,14 @@ class App extends Component {
     }
   };
 
+  //updates gameState to playerPhase
   handleBeggining = () => {
     let cloneState = this.state;
     cloneState.gameState = "playerPhase";
     this.setState({ cloneState });
   };
 
+  //updates gameState to onGoing
   handlePlayerChoice = players => {
     let cloneState = this.state;
     cloneState.players = players;
@@ -77,6 +80,7 @@ class App extends Component {
     this.setState({ cloneState });
   };
 
+  //empties the board and sets starting player to "x" then updates states
   handleReset = phase => {
     let cloneState = this.state;
     cloneState.gameState = phase;
@@ -89,6 +93,7 @@ class App extends Component {
     this.setState({ cloneState });
   };
 
+  //Contructes phrase to be passed to the controls component depending of win or draw
   handleGameEnd = player => {
     let whoWon =
       player === "x" || player === "o"
@@ -104,10 +109,10 @@ class App extends Component {
     let boardCssClass = "";
     switch (this.state.gameState) {
       case "finished":
-        boardCssClass = "opaque";
+        boardCssClass = "show rubberBand animated";
         break;
       case "onGoing":
-        boardCssClass = "show";
+        boardCssClass = "show animated fadeIn";
         break;
       default:
         boardCssClass = "hide";

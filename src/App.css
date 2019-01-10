@@ -1,8 +1,13 @@
 .container {
   position: relative;
   top: 25vh;
-  width: 60%;
   margin: 0 auto;
+}
+
+@media only screen and (max-device-width: 480px) {
+  .container {
+    top: 10vh;
+  }
 }
 
 #title {
@@ -15,6 +20,7 @@
 
 #controls {
   text-align: center;
+  height: 120px;
 }
 
 #start {
@@ -33,23 +39,23 @@
 }
 
 #arrowLeft {
-  display: inline-block;
-  height: 60px;
-  width: 60px;
   background-image: url("/images/arrowLeft.png");
-  background-position: center;
-  background-size: 80%;
-  background-repeat: no-repeat;
 }
 
 #redo {
+  background-image: url("/images/loop.png");
+}
+
+#arrowLeft,
+#redo {
   display: inline-block;
+  margin-top: 27px;
   height: 60px;
   width: 60px;
-  background-image: url("/images/loop.png");
   background-position: center;
   background-size: 80%;
   background-repeat: no-repeat;
+  cursor: pointer;
 }
 
 /*End of Controls*/
@@ -61,8 +67,6 @@
   margin: 0 auto;
   display: grid;
   grid-template-columns: auto auto auto;
-  -webkit-transition: opacity 1s;
-  transition: opacity 1s;
 }
 
 .square {
@@ -87,28 +91,24 @@
   background-image: url("/images/circle.png");
 }
 
-.empty {
-  background-image: none;
-}
-
 /*GAme won lost draw*/
 
 /*
 div {
-  -webkit-transition: opacity 1s; 
-  transition: opacity 1s;
+
 }
 
 */
 
-.whoWon{
-  font-size:35px;
+.whoWon {
+  font-size: 35px;
 }
-span.whoWon{
+span.whoWon {
+  font-size: 35px;
   display: inline-block;
-  padding:20px;
+  padding: 20px;
+  cursor: pointer;
 }
-
 
 .hide {
   display: none !important;
@@ -116,9 +116,10 @@ span.whoWon{
 
 .show {
   display: show;
+  opacity: 1;
 }
 
-.opaque{
-  opacity:0.3;
-  z-index:-1;
+.opaque {
+  opacity: 0.3;
+  z-index: -1;
 }

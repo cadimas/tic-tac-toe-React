@@ -1,7 +1,4 @@
-export let doSth = () => {
-  console.log("ouw may god");
-};
-
+//Receives Board and player as arguments and returns Bool true or false if player won
 export let checkWin = (board, player) => {
   if (
     (board[0].value === player &&
@@ -35,12 +32,14 @@ export let checkWin = (board, player) => {
   }
 };
 
+//returns list of places where the board is empty
 export let makeAvailSpots = board => {
   return board.filter(el => el.value === "");
 };
 
 //ref:https://medium.freecodecamp.org/how-to-make-your-tic-tac-toe-game-unbeatable-by-using-the-minimax-algorithm-9d690bad4b37
-// Returns best possible move from index 0 to 8
+
+// Takes in a board list[{id:0-8 , value:"x or o or empty"}] and returns the best possible move from index 0 to 8
 export function minimax(board, player) {
   let availSpots = makeAvailSpots(board);
   let player1 = "x";
