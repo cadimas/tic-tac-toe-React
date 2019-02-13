@@ -7,11 +7,11 @@ import * as TicTac from "./lib/ticTac.js";
 class App extends Component {
   state = {
     board: [
-      { id: 0, value: "o" },
-      { id: 1, value: "o" },
+      { id: 0, value: "" },
+      { id: 1, value: "" },
       { id: 2, value: "" },
-      { id: 3, value: "x" },
-      { id: 4, value: "x" },
+      { id: 3, value: "" },
+      { id: 4, value: "" },
       { id: 5, value: "" },
       { id: 6, value: "" },
       { id: 7, value: "" },
